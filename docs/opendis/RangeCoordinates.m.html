@@ -1,0 +1,2420 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>opendis.RangeCoordinates API documentation</title>
+    <meta name="description" content="" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#opendis.RangeCoordinates.pi">pi</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#opendis.RangeCoordinates.deg2rad">deg2rad</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.euclideanDistance">euclideanDistance</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.gpsWeekCheck">gpsWeekCheck</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.isEven">isEven</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.keplerE">keplerE</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.rad2deg">rad2deg</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#opendis.RangeCoordinates.GPS">GPS</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ecef2lla">ecef2lla</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ecef2ned">ecef2ned</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ecef2pae">ecef2pae</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ecef2utm">ecef2utm</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.lla2ecef">lla2ecef</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.lla2gcc">lla2gcc</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.lla2utm">lla2utm</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ned2ecef">ned2ecef</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.ned2pae">ned2pae</a></li>
+    <li class="mono"><a href="#opendis.RangeCoordinates.GPS.utmLetterDesignator">utmLetterDesignator</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#opendis.RangeCoordinates.WGS84">WGS84</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#opendis.RangeCoordinates.WGS84.g0">g0</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">opendis.RangeCoordinates</span> module</h1>
+  
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates" class="source">
+    <pre><code>#! /usr/bin/python
+
+# Various coordinate system transform utilities. DIS uses
+# an Earth-Centered, Earth-Fixed coordinate system, with the
+# origin at the center of the (WGS84) earth, positive x out
+# at the equator and prime meridian, z out through the north
+# pole, and y out at the equator and 90 deg east. We often want
+# to convert those coordinates to latitude, longitude, and altitude
+# on the WGS84 globe. This utility does that. (It's swiped from
+# the net, specifically the stoqs project at MBARI)
+
+__author__ = ""
+__credits = "https://github.com/GAVLab/fhwa2_viz/blob/master/fhwa2_gui/src/util.py"
+
+"""
+Container for general GPS functions and classes
+Functions:
+    deg2rad
+    rad2deg
+    euclideanDistance
+    gpsWeekCheck
+    keplerE
+Classes:
+    GPS - includes functions:
+        lla2ecef
+        ecef2lla
+    WGS84 - constant parameters for GPS class
+"""
+#Import required packages
+from math import sqrt, pi, sin, cos, tan, atan, atan2
+from numpy import array, dot
+#from numarray import array, dot, zeros, Float64
+
+#def diag(l):
+#    length = len(l)
+#    a = zeros((length, length), Float64)
+#    for index in range(length):
+#        a[index, index] = l[index]
+#    return a
+
+
+def deg2rad(deg):
+    """Converts degrees to radians"""
+    return deg * pi / 180
+
+
+def rad2deg(rad):
+    """Converts radians to degrees"""
+    return rad * 180 / pi
+
+
+def isEven(num):
+    """Boolean function returning true if num is even, false if not"""
+    return num%2 == 0
+
+
+def euclideanDistance(data, dataRef=None):
+    """Calculates the Euclidian distance between the given data and zero.
+    This works out to be equivalent to the distance between two points if their
+    difference is given as the input"""
+    total = 0
+    for index in range(len(data)):
+        if dataRef is None:
+            total += data[index]**2
+        else:
+            total += (data[index] - dataRef[index])**2
+    return sqrt(total)
+
+
+def gpsWeekCheck(t):
+    """Makes sure the time is in the interval [-302400 302400] seconds, which
+    corresponds to number of seconds in the GPS week"""
+    if t > 302400.:
+        t = t - 604800.
+    elif t < -302400.:
+        t = t + 604800.
+    return t
+
+
+def keplerE(M_k, ecc, tolerance=1e-12):
+    """Iteratively calculates E_k using Kepler's equation:
+    E_k = M_k + ecc * sin(E_k)"""
+    E_k = M_k
+    E_0 = E_k + tolerance * 10.
+    while abs(E_k - E_0) > tolerance:
+        E_0 = E_k
+        E_k = M_k + ecc * sin(E_k)
+    return E_k
+
+
+class WGS84:
+    """General parameters defined by the WGS84 system"""
+    #Semimajor axis length (m)
+    a = 6378137.0
+    #Semiminor axis length (m)
+    b = 6356752.3142
+    #Ellipsoid flatness (unitless)
+    f = (a - b) / a
+    #Eccentricity (unitless)
+    e = sqrt(f * (2 - f))
+    #Speed of light (m/s)
+    c = 299792458.
+    #Relativistic constant
+    F = -4.442807633e-10
+    #Earth's universal gravitational constant
+    mu = 3.986005e14
+    #Earth rotation rate (rad/s)
+    omega_ie = 7.2921151467e-5
+
+    def g0(self, L):
+        """acceleration due to gravity at the elipsoid surface at latitude L"""
+        return 9.7803267715 * (1 + 0.001931851353 * sin(L)**2) / \
+                        sqrt(1 - 0.0066943800229 * sin(L)**2)
+
+
+class GPS:
+    """Working class for GPS module"""
+    wgs84 = WGS84()
+    fGPS = 1023
+    fL1 = fGPS * 1.54e6
+    fL2 = fGPS * 1.2e6
+
+    def lla2ecef(self, lla):
+        """Convert lat, lon, alt to Earth-centered, Earth-fixed coordinates.
+        Input: lla - (lat, lon, alt) in (decimal degrees, decimal degees, m)
+        Output: ecef - (x, y, z) in (m, m, m)
+        """
+        #Decompose the input
+        lat = deg2rad(lla[0])
+        lon = deg2rad(lla[1])
+        alt = lla[2]
+        #Calculate length of the normal to the ellipsoid
+        N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sin(lat))**2)
+        #Calculate ecef coordinates
+        x = (N + alt) * cos(lat) * cos(lon)
+        y = (N + alt) * cos(lat) * sin(lon)
+        z = (N * (1 - self.wgs84.e**2) + alt) * sin(lat)
+        #Return the ecef coordinates
+        return (x, y, z)
+
+    def lla2gcc(self, lla, geoOrigin=''):
+        """
+        Same as lls2ecef, but accepts an X3D-style geoOrigin string for subtraction of it in ecef (gcc) cooridinates
+        """
+        if geoOrigin:
+            lon0, lat0, a0 = [float(c) for c in geoOrigin.split()]
+            x0, y0, z0 = self.lla2ecef((lat0, lon0, a0))
+        else:
+            x0, y0, z0 = 0, 0, 0
+
+        x, y, z = self.lla2ecef(lla)
+
+        return (x - x0, y - y0, z -z0)
+
+    def ecef2lla(self, ecef, tolerance=1e-9):
+        """Convert Earth-centered, Earth-fixed coordinates to lat, lon, alt.
+        Input: ecef - (x, y, z) in (m, m, m)
+        Output: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+        """
+        #Decompose the input
+        x = ecef[0]
+        y = ecef[1]
+        z = ecef[2]
+        #Calculate lon
+        lon = atan2(y, x)
+        #Initialize the variables to calculate lat and alt
+        alt = 0
+        N = self.wgs84.a
+        p = sqrt(x**2 + y**2)
+        lat = 0
+        previousLat = 90
+        #Iterate until tolerance is reached
+        while abs(lat - previousLat) >= tolerance:
+            previousLat = lat
+            sinLat = z / (N * (1 - self.wgs84.e**2) + alt)
+            lat = atan((z + self.wgs84.e**2 * N * sinLat) / p)
+            N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sinLat)**2)
+            alt = p / cos(lat) - N
+        #Return the lla coordinates
+        return (rad2deg(lat), rad2deg(lon), alt)
+
+    def ecef2ned(self, ecef, origin):
+        """Converts ecef coordinates into local tangent plane where the
+        origin is the origin in ecef coordinates.
+        Input: ecef - (x, y, z) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: ned - (north, east, down) in (m, m, m)
+        """
+        llaOrigin = self.ecef2lla(origin)
+        lat = deg2rad(llaOrigin[0])
+        lon = deg2rad(llaOrigin[1])
+        Re2t = array([[-sin(lat)*cos(lon), -sin(lat)*sin(lon), cos(lat)],
+                    [-sin(lon), cos(lon), 0],
+                    [-cos(lat)*cos(lon), -cos(lat)*sin(lon), -sin(lat)]])
+        return list(dot(Re2t, array(ecef) - array(origin)))
+
+    def ned2ecef(self, ned, origin):
+        """Converts ned local tangent plane coordinates into ecef coordinates
+        using origin as the ecef point of tangency.
+        Input: ned - (north, east, down) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: ecef - (x, y, z) in (m, m, m)
+        """
+        llaOrigin = self.ecef2lla(origin)
+        lat = deg2rad(llaOrigin[0])
+        lon = deg2rad(llaOrigin[1])
+        Rt2e = array([[-sin(lat)*cos(lon), -sin(lon), -cos(lat)*cos(lon)],
+                    [-sin(lat)*sin(lon), cos(lon), -cos(lat)*sin(lon)],
+                    [cos(lat), 0., -sin(lat)]])
+        return list(dot(Rt2e, array(ned)) + array(origin))
+
+    def ned2pae(self, ned):
+        """Converts the local north, east, down coordinates into range, azimuth,
+        and elevation angles
+        Input: ned - (north, east, down) in (m, m, m)
+        Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+        """
+        p = euclideanDistance(ned)
+        alpha = atan2(ned[1], ned[0])
+        epsilon = atan2(-ned[2], sqrt(ned[0]**2 + ned[1]**2))
+        return [p, rad2deg(alpha), rad2deg(epsilon)]
+
+    def ecef2pae(self, ecef, origin):
+        """Converts the ecef coordinates into a tangent plane with the origin
+        privided, returning the range, azimuth, and elevation angles.
+        This is a convenience function combining ecef2ned and ned2pae.
+        Input: ecef - (x, y, z) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+        """
+        ned = self.ecef2ned(ecef, origin)
+        return self.ned2pae(ned)
+
+    def ecef2utm(self, ecef):
+        lla = self.ecef2lla(ecef)
+        utm, info = self.lla2utm(lla)
+        return utm, info
+
+    def lla2utm(self, lla):
+        """Converts lat, lon, alt to Universal Transverse Mercator coordinates
+        Input: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+        Output: utm - (easting, northing, upping) in (m, m, m)
+            info - (zone, scale factor)
+        Algorithm from:
+            Snyder, J. P., Map Projections-A Working Manual, U.S. Geol. Surv.
+                Prof. Pap., 1395, 1987
+        Code segments from pygps project, Russ Nelson"""
+        #Decompose lla
+        lat = lla[0]
+        lon = lla[1]
+        alt = lla[2]
+        #Determine the zone number
+        zoneNumber = int((lon+180.)/6) + 1
+        #Special zone for Norway
+        if (56. <= lat < 64.) and (3. <= lon < 12.):
+            zoneNumber = 32
+        #Special zones for Svalbard
+        if 72. <= lat < 84.:
+            if 0. <= lon < 9.: zoneNumber = 31
+            elif 9. <= lon < 21.: zoneNumber = 33
+            elif 21. <= lon < 33.: zoneNumber = 35
+            elif 33. <= lon < 42.: zoneNumber = 37
+        #Format the zone
+        zone = "%d%c" % (zoneNumber, self.utmLetterDesignator(lat))
+        #Determine longitude origin
+        lonOrigin = (zoneNumber - 1) * 6 - 180 + 3
+        #Convert to radians
+        latRad = deg2rad(lat)
+        lonRad = deg2rad(lon)
+        lonOriginRad = deg2rad(lonOrigin)
+        #Conversion constants
+        k0 = 0.9996
+        eSquared = self.wgs84.e**2
+        ePrimeSquared = eSquared/(1.-eSquared)
+        N = self.wgs84.a/sqrt(1.-eSquared*sin(latRad)**2)
+        T = tan(latRad)**2
+        C = ePrimeSquared*cos(latRad)**2
+        A = (lonRad - lonOriginRad)*cos(latRad)
+        M = self.wgs84.a*( \
+            (1. - \
+                eSquared/4. - \
+                3.*eSquared**2/64. - \
+                5.*eSquared**3/256)*latRad - \
+            (3.*eSquared/8. + \
+                3.*eSquared**2/32. + \
+                45.*eSquared**3/1024.)*sin(2.*latRad) + \
+            (15.*eSquared**2/256. + \
+                45.*eSquared**3/1024.)*sin(4.*latRad) - \
+            (35.*eSquared**3/3072.)*sin(6.*latRad))
+        M0 = 0.
+        #Calculate coordinates
+        x = k0*N*( \
+            A+(1-T+C)*A**3/6. + \
+            (5.-18.*T+T**2+72.*C-58.*ePrimeSquared)*A**5/120.) + 500000.
+        y = k0*( \
+            M-M0+N*tan(latRad)*( \
+                A**2/2. + \
+                (5.-T+9.*C+4.*C**2)*A**4/24. + \
+                (61.-58.*T+T**2+600.*C-330.*ePrimeSquared)*A**6/720.))
+        #Calculate scale factor
+        k = k0*(1 + \
+            (1+C)*A**2/2. + \
+            (5.-4.*T+42.*C+13.*C**2-28.*ePrimeSquared)*A**4/24. + \
+            (61.-148.*T+16.*T**2)*A**6/720.)
+        utm = [x, y, alt]
+        info = [zone, k]
+        return utm, info
+
+    def utmLetterDesignator(self, lat):
+        """Returns the latitude zone of the UTM coordinates"""
+        if -80 <= lat < -72: return 'C'
+        elif -72 <= lat < -64: return 'D'
+        elif -64 <= lat < -56: return 'E'
+        elif -56 <= lat < -48: return 'F'
+        elif -48 <= lat < -40: return 'G'
+        elif -40 <= lat < -32: return 'H'
+        elif -32 <= lat < -24: return 'J'
+        elif -24 <= lat < -16: return 'K'
+        elif -16 <= lat < -8: return 'L'
+        elif -8 <= lat < 0: return 'M'
+        elif 0 <= lat < 8: return 'N'
+        elif 8 <= lat < 16: return 'P'
+        elif 16 <= lat < 24: return 'Q'
+        elif 24 <= lat < 32: return 'R'
+        elif 32 <= lat < 40: return 'S'
+        elif 40 <= lat < 48: return 'T'
+        elif 48 <= lat < 56: return 'U'
+        elif 56 <= lat < 64: return 'V'
+        elif 64 <= lat < 72: return 'W'
+        elif 72 <= lat < 80: return 'X'
+        else: return 'Z'
+
+
+if __name__ == "__main__":
+    wgs84 = WGS84()
+    gps = GPS()
+    lla = (34. + 0/60. + 0.00174/3600.,
+        -117. - 20./60. - 0.84965/3600.,
+        251.702)
+    print("lla: {}".format(lla))
+    ecef = gps.lla2ecef(lla)
+    print("ecef: {}".format(ecef))
+    print("lla: {}".format(gps.ecef2lla(ecef)))
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+    <h2 class="section-title" id="header-variables">Module variables</h2>
+      <div class="item">
+      <p id="opendis.RangeCoordinates.pi" class="name">var <span class="ident">pi</span></p>
+      
+  
+  <div class="source_cont">
+</div>
+
+      </div>
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.deg2rad">
+    <p>def <span class="ident">deg2rad</span>(</p><p>deg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts degrees to radians</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.deg2rad', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.deg2rad" class="source">
+    <pre><code>def deg2rad(deg):
+    """Converts degrees to radians"""
+    return deg * pi / 180
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.euclideanDistance">
+    <p>def <span class="ident">euclideanDistance</span>(</p><p>data, dataRef=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Calculates the Euclidian distance between the given data and zero.
+This works out to be equivalent to the distance between two points if their
+difference is given as the input</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.euclideanDistance', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.euclideanDistance" class="source">
+    <pre><code>def euclideanDistance(data, dataRef=None):
+    """Calculates the Euclidian distance between the given data and zero.
+    This works out to be equivalent to the distance between two points if their
+    difference is given as the input"""
+    total = 0
+    for index in range(len(data)):
+        if dataRef is None:
+            total += data[index]**2
+        else:
+            total += (data[index] - dataRef[index])**2
+    return sqrt(total)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.gpsWeekCheck">
+    <p>def <span class="ident">gpsWeekCheck</span>(</p><p>t)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Makes sure the time is in the interval [-302400 302400] seconds, which
+corresponds to number of seconds in the GPS week</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.gpsWeekCheck', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.gpsWeekCheck" class="source">
+    <pre><code>def gpsWeekCheck(t):
+    """Makes sure the time is in the interval [-302400 302400] seconds, which
+    corresponds to number of seconds in the GPS week"""
+    if t > 302400.:
+        t = t - 604800.
+    elif t < -302400.:
+        t = t + 604800.
+    return t
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.isEven">
+    <p>def <span class="ident">isEven</span>(</p><p>num)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Boolean function returning true if num is even, false if not</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.isEven', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.isEven" class="source">
+    <pre><code>def isEven(num):
+    """Boolean function returning true if num is even, false if not"""
+    return num%2 == 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.keplerE">
+    <p>def <span class="ident">keplerE</span>(</p><p>M_k, ecc, tolerance=1e-12)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Iteratively calculates E_k using Kepler's equation:
+E_k = M_k + ecc * sin(E_k)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.keplerE', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.keplerE" class="source">
+    <pre><code>def keplerE(M_k, ecc, tolerance=1e-12):
+    """Iteratively calculates E_k using Kepler's equation:
+    E_k = M_k + ecc * sin(E_k)"""
+    E_k = M_k
+    E_0 = E_k + tolerance * 10.
+    while abs(E_k - E_0) > tolerance:
+        E_0 = E_k
+        E_k = M_k + ecc * sin(E_k)
+    return E_k
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.rad2deg">
+    <p>def <span class="ident">rad2deg</span>(</p><p>rad)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts radians to degrees</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.rad2deg', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.rad2deg" class="source">
+    <pre><code>def rad2deg(rad):
+    """Converts radians to degrees"""
+    return rad * 180 / pi
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="opendis.RangeCoordinates.GPS" class="name">class <span class="ident">GPS</span></p>
+      
+  
+    <div class="desc"><p>Working class for GPS module</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS" class="source">
+    <pre><code>class GPS:
+    """Working class for GPS module"""
+    wgs84 = WGS84()
+    fGPS = 1023
+    fL1 = fGPS * 1.54e6
+    fL2 = fGPS * 1.2e6
+
+    def lla2ecef(self, lla):
+        """Convert lat, lon, alt to Earth-centered, Earth-fixed coordinates.
+        Input: lla - (lat, lon, alt) in (decimal degrees, decimal degees, m)
+        Output: ecef - (x, y, z) in (m, m, m)
+        """
+        #Decompose the input
+        lat = deg2rad(lla[0])
+        lon = deg2rad(lla[1])
+        alt = lla[2]
+        #Calculate length of the normal to the ellipsoid
+        N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sin(lat))**2)
+        #Calculate ecef coordinates
+        x = (N + alt) * cos(lat) * cos(lon)
+        y = (N + alt) * cos(lat) * sin(lon)
+        z = (N * (1 - self.wgs84.e**2) + alt) * sin(lat)
+        #Return the ecef coordinates
+        return (x, y, z)
+
+    def lla2gcc(self, lla, geoOrigin=''):
+        """
+        Same as lls2ecef, but accepts an X3D-style geoOrigin string for subtraction of it in ecef (gcc) cooridinates
+        """
+        if geoOrigin:
+            lon0, lat0, a0 = [float(c) for c in geoOrigin.split()]
+            x0, y0, z0 = self.lla2ecef((lat0, lon0, a0))
+        else:
+            x0, y0, z0 = 0, 0, 0
+
+        x, y, z = self.lla2ecef(lla)
+
+        return (x - x0, y - y0, z -z0)
+
+    def ecef2lla(self, ecef, tolerance=1e-9):
+        """Convert Earth-centered, Earth-fixed coordinates to lat, lon, alt.
+        Input: ecef - (x, y, z) in (m, m, m)
+        Output: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+        """
+        #Decompose the input
+        x = ecef[0]
+        y = ecef[1]
+        z = ecef[2]
+        #Calculate lon
+        lon = atan2(y, x)
+        #Initialize the variables to calculate lat and alt
+        alt = 0
+        N = self.wgs84.a
+        p = sqrt(x**2 + y**2)
+        lat = 0
+        previousLat = 90
+        #Iterate until tolerance is reached
+        while abs(lat - previousLat) >= tolerance:
+            previousLat = lat
+            sinLat = z / (N * (1 - self.wgs84.e**2) + alt)
+            lat = atan((z + self.wgs84.e**2 * N * sinLat) / p)
+            N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sinLat)**2)
+            alt = p / cos(lat) - N
+        #Return the lla coordinates
+        return (rad2deg(lat), rad2deg(lon), alt)
+
+    def ecef2ned(self, ecef, origin):
+        """Converts ecef coordinates into local tangent plane where the
+        origin is the origin in ecef coordinates.
+        Input: ecef - (x, y, z) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: ned - (north, east, down) in (m, m, m)
+        """
+        llaOrigin = self.ecef2lla(origin)
+        lat = deg2rad(llaOrigin[0])
+        lon = deg2rad(llaOrigin[1])
+        Re2t = array([[-sin(lat)*cos(lon), -sin(lat)*sin(lon), cos(lat)],
+                    [-sin(lon), cos(lon), 0],
+                    [-cos(lat)*cos(lon), -cos(lat)*sin(lon), -sin(lat)]])
+        return list(dot(Re2t, array(ecef) - array(origin)))
+
+    def ned2ecef(self, ned, origin):
+        """Converts ned local tangent plane coordinates into ecef coordinates
+        using origin as the ecef point of tangency.
+        Input: ned - (north, east, down) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: ecef - (x, y, z) in (m, m, m)
+        """
+        llaOrigin = self.ecef2lla(origin)
+        lat = deg2rad(llaOrigin[0])
+        lon = deg2rad(llaOrigin[1])
+        Rt2e = array([[-sin(lat)*cos(lon), -sin(lon), -cos(lat)*cos(lon)],
+                    [-sin(lat)*sin(lon), cos(lon), -cos(lat)*sin(lon)],
+                    [cos(lat), 0., -sin(lat)]])
+        return list(dot(Rt2e, array(ned)) + array(origin))
+
+    def ned2pae(self, ned):
+        """Converts the local north, east, down coordinates into range, azimuth,
+        and elevation angles
+        Input: ned - (north, east, down) in (m, m, m)
+        Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+        """
+        p = euclideanDistance(ned)
+        alpha = atan2(ned[1], ned[0])
+        epsilon = atan2(-ned[2], sqrt(ned[0]**2 + ned[1]**2))
+        return [p, rad2deg(alpha), rad2deg(epsilon)]
+
+    def ecef2pae(self, ecef, origin):
+        """Converts the ecef coordinates into a tangent plane with the origin
+        privided, returning the range, azimuth, and elevation angles.
+        This is a convenience function combining ecef2ned and ned2pae.
+        Input: ecef - (x, y, z) in (m, m, m)
+            origin - (x0, y0, z0) in (m, m, m)
+        Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+        """
+        ned = self.ecef2ned(ecef, origin)
+        return self.ned2pae(ned)
+
+    def ecef2utm(self, ecef):
+        lla = self.ecef2lla(ecef)
+        utm, info = self.lla2utm(lla)
+        return utm, info
+
+    def lla2utm(self, lla):
+        """Converts lat, lon, alt to Universal Transverse Mercator coordinates
+        Input: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+        Output: utm - (easting, northing, upping) in (m, m, m)
+            info - (zone, scale factor)
+        Algorithm from:
+            Snyder, J. P., Map Projections-A Working Manual, U.S. Geol. Surv.
+                Prof. Pap., 1395, 1987
+        Code segments from pygps project, Russ Nelson"""
+        #Decompose lla
+        lat = lla[0]
+        lon = lla[1]
+        alt = lla[2]
+        #Determine the zone number
+        zoneNumber = int((lon+180.)/6) + 1
+        #Special zone for Norway
+        if (56. <= lat < 64.) and (3. <= lon < 12.):
+            zoneNumber = 32
+        #Special zones for Svalbard
+        if 72. <= lat < 84.:
+            if 0. <= lon < 9.: zoneNumber = 31
+            elif 9. <= lon < 21.: zoneNumber = 33
+            elif 21. <= lon < 33.: zoneNumber = 35
+            elif 33. <= lon < 42.: zoneNumber = 37
+        #Format the zone
+        zone = "%d%c" % (zoneNumber, self.utmLetterDesignator(lat))
+        #Determine longitude origin
+        lonOrigin = (zoneNumber - 1) * 6 - 180 + 3
+        #Convert to radians
+        latRad = deg2rad(lat)
+        lonRad = deg2rad(lon)
+        lonOriginRad = deg2rad(lonOrigin)
+        #Conversion constants
+        k0 = 0.9996
+        eSquared = self.wgs84.e**2
+        ePrimeSquared = eSquared/(1.-eSquared)
+        N = self.wgs84.a/sqrt(1.-eSquared*sin(latRad)**2)
+        T = tan(latRad)**2
+        C = ePrimeSquared*cos(latRad)**2
+        A = (lonRad - lonOriginRad)*cos(latRad)
+        M = self.wgs84.a*( \
+            (1. - \
+                eSquared/4. - \
+                3.*eSquared**2/64. - \
+                5.*eSquared**3/256)*latRad - \
+            (3.*eSquared/8. + \
+                3.*eSquared**2/32. + \
+                45.*eSquared**3/1024.)*sin(2.*latRad) + \
+            (15.*eSquared**2/256. + \
+                45.*eSquared**3/1024.)*sin(4.*latRad) - \
+            (35.*eSquared**3/3072.)*sin(6.*latRad))
+        M0 = 0.
+        #Calculate coordinates
+        x = k0*N*( \
+            A+(1-T+C)*A**3/6. + \
+            (5.-18.*T+T**2+72.*C-58.*ePrimeSquared)*A**5/120.) + 500000.
+        y = k0*( \
+            M-M0+N*tan(latRad)*( \
+                A**2/2. + \
+                (5.-T+9.*C+4.*C**2)*A**4/24. + \
+                (61.-58.*T+T**2+600.*C-330.*ePrimeSquared)*A**6/720.))
+        #Calculate scale factor
+        k = k0*(1 + \
+            (1+C)*A**2/2. + \
+            (5.-4.*T+42.*C+13.*C**2-28.*ePrimeSquared)*A**4/24. + \
+            (61.-148.*T+16.*T**2)*A**6/720.)
+        utm = [x, y, alt]
+        info = [zone, k]
+        return utm, info
+
+    def utmLetterDesignator(self, lat):
+        """Returns the latitude zone of the UTM coordinates"""
+        if -80 <= lat < -72: return 'C'
+        elif -72 <= lat < -64: return 'D'
+        elif -64 <= lat < -56: return 'E'
+        elif -56 <= lat < -48: return 'F'
+        elif -48 <= lat < -40: return 'G'
+        elif -40 <= lat < -32: return 'H'
+        elif -32 <= lat < -24: return 'J'
+        elif -24 <= lat < -16: return 'K'
+        elif -16 <= lat < -8: return 'L'
+        elif -8 <= lat < 0: return 'M'
+        elif 0 <= lat < 8: return 'N'
+        elif 8 <= lat < 16: return 'P'
+        elif 16 <= lat < 24: return 'Q'
+        elif 24 <= lat < 32: return 'R'
+        elif 32 <= lat < 40: return 'S'
+        elif 40 <= lat < 48: return 'T'
+        elif 48 <= lat < 56: return 'U'
+        elif 56 <= lat < 64: return 'V'
+        elif 64 <= lat < 72: return 'W'
+        elif 72 <= lat < 80: return 'X'
+        else: return 'Z'
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#opendis.RangeCoordinates.GPS">GPS</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.GPS.fGPS" class="name">var <span class="ident">fGPS</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.GPS.fL1" class="name">var <span class="ident">fL1</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.GPS.fL2" class="name">var <span class="ident">fL2</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.GPS.wgs84" class="name">var <span class="ident">wgs84</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ecef2lla">
+    <p>def <span class="ident">ecef2lla</span>(</p><p>self, ecef, tolerance=1e-09)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Convert Earth-centered, Earth-fixed coordinates to lat, lon, alt.
+Input: ecef - (x, y, z) in (m, m, m)
+Output: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ecef2lla', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ecef2lla" class="source">
+    <pre><code>def ecef2lla(self, ecef, tolerance=1e-9):
+    """Convert Earth-centered, Earth-fixed coordinates to lat, lon, alt.
+    Input: ecef - (x, y, z) in (m, m, m)
+    Output: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+    """
+    #Decompose the input
+    x = ecef[0]
+    y = ecef[1]
+    z = ecef[2]
+    #Calculate lon
+    lon = atan2(y, x)
+    #Initialize the variables to calculate lat and alt
+    alt = 0
+    N = self.wgs84.a
+    p = sqrt(x**2 + y**2)
+    lat = 0
+    previousLat = 90
+    #Iterate until tolerance is reached
+    while abs(lat - previousLat) >= tolerance:
+        previousLat = lat
+        sinLat = z / (N * (1 - self.wgs84.e**2) + alt)
+        lat = atan((z + self.wgs84.e**2 * N * sinLat) / p)
+        N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sinLat)**2)
+        alt = p / cos(lat) - N
+    #Return the lla coordinates
+    return (rad2deg(lat), rad2deg(lon), alt)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ecef2ned">
+    <p>def <span class="ident">ecef2ned</span>(</p><p>self, ecef, origin)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts ecef coordinates into local tangent plane where the
+origin is the origin in ecef coordinates.
+Input: ecef - (x, y, z) in (m, m, m)
+    origin - (x0, y0, z0) in (m, m, m)
+Output: ned - (north, east, down) in (m, m, m)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ecef2ned', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ecef2ned" class="source">
+    <pre><code>def ecef2ned(self, ecef, origin):
+    """Converts ecef coordinates into local tangent plane where the
+    origin is the origin in ecef coordinates.
+    Input: ecef - (x, y, z) in (m, m, m)
+        origin - (x0, y0, z0) in (m, m, m)
+    Output: ned - (north, east, down) in (m, m, m)
+    """
+    llaOrigin = self.ecef2lla(origin)
+    lat = deg2rad(llaOrigin[0])
+    lon = deg2rad(llaOrigin[1])
+    Re2t = array([[-sin(lat)*cos(lon), -sin(lat)*sin(lon), cos(lat)],
+                [-sin(lon), cos(lon), 0],
+                [-cos(lat)*cos(lon), -cos(lat)*sin(lon), -sin(lat)]])
+    return list(dot(Re2t, array(ecef) - array(origin)))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ecef2pae">
+    <p>def <span class="ident">ecef2pae</span>(</p><p>self, ecef, origin)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts the ecef coordinates into a tangent plane with the origin
+privided, returning the range, azimuth, and elevation angles.
+This is a convenience function combining ecef2ned and ned2pae.
+Input: ecef - (x, y, z) in (m, m, m)
+    origin - (x0, y0, z0) in (m, m, m)
+Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ecef2pae', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ecef2pae" class="source">
+    <pre><code>def ecef2pae(self, ecef, origin):
+    """Converts the ecef coordinates into a tangent plane with the origin
+    privided, returning the range, azimuth, and elevation angles.
+    This is a convenience function combining ecef2ned and ned2pae.
+    Input: ecef - (x, y, z) in (m, m, m)
+        origin - (x0, y0, z0) in (m, m, m)
+    Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+    """
+    ned = self.ecef2ned(ecef, origin)
+    return self.ned2pae(ned)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ecef2utm">
+    <p>def <span class="ident">ecef2utm</span>(</p><p>self, ecef)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ecef2utm', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ecef2utm" class="source">
+    <pre><code>def ecef2utm(self, ecef):
+    lla = self.ecef2lla(ecef)
+    utm, info = self.lla2utm(lla)
+    return utm, info
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.lla2ecef">
+    <p>def <span class="ident">lla2ecef</span>(</p><p>self, lla)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Convert lat, lon, alt to Earth-centered, Earth-fixed coordinates.
+Input: lla - (lat, lon, alt) in (decimal degrees, decimal degees, m)
+Output: ecef - (x, y, z) in (m, m, m)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.lla2ecef', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.lla2ecef" class="source">
+    <pre><code>def lla2ecef(self, lla):
+    """Convert lat, lon, alt to Earth-centered, Earth-fixed coordinates.
+    Input: lla - (lat, lon, alt) in (decimal degrees, decimal degees, m)
+    Output: ecef - (x, y, z) in (m, m, m)
+    """
+    #Decompose the input
+    lat = deg2rad(lla[0])
+    lon = deg2rad(lla[1])
+    alt = lla[2]
+    #Calculate length of the normal to the ellipsoid
+    N = self.wgs84.a / sqrt(1 - (self.wgs84.e * sin(lat))**2)
+    #Calculate ecef coordinates
+    x = (N + alt) * cos(lat) * cos(lon)
+    y = (N + alt) * cos(lat) * sin(lon)
+    z = (N * (1 - self.wgs84.e**2) + alt) * sin(lat)
+    #Return the ecef coordinates
+    return (x, y, z)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.lla2gcc">
+    <p>def <span class="ident">lla2gcc</span>(</p><p>self, lla, geoOrigin=&#39;&#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Same as lls2ecef, but accepts an X3D-style geoOrigin string for subtraction of it in ecef (gcc) cooridinates</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.lla2gcc', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.lla2gcc" class="source">
+    <pre><code>def lla2gcc(self, lla, geoOrigin=''):
+    """
+    Same as lls2ecef, but accepts an X3D-style geoOrigin string for subtraction of it in ecef (gcc) cooridinates
+    """
+    if geoOrigin:
+        lon0, lat0, a0 = [float(c) for c in geoOrigin.split()]
+        x0, y0, z0 = self.lla2ecef((lat0, lon0, a0))
+    else:
+        x0, y0, z0 = 0, 0, 0
+    x, y, z = self.lla2ecef(lla)
+    return (x - x0, y - y0, z -z0)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.lla2utm">
+    <p>def <span class="ident">lla2utm</span>(</p><p>self, lla)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts lat, lon, alt to Universal Transverse Mercator coordinates
+Input: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+Output: utm - (easting, northing, upping) in (m, m, m)
+    info - (zone, scale factor)
+Algorithm from:
+    Snyder, J. P., Map Projections-A Working Manual, U.S. Geol. Surv.
+        Prof. Pap., 1395, 1987
+Code segments from pygps project, Russ Nelson</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.lla2utm', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.lla2utm" class="source">
+    <pre><code>def lla2utm(self, lla):
+    """Converts lat, lon, alt to Universal Transverse Mercator coordinates
+    Input: lla - (lat, lon, alt) in (decimal degrees, decimal degrees, m)
+    Output: utm - (easting, northing, upping) in (m, m, m)
+        info - (zone, scale factor)
+    Algorithm from:
+        Snyder, J. P., Map Projections-A Working Manual, U.S. Geol. Surv.
+            Prof. Pap., 1395, 1987
+    Code segments from pygps project, Russ Nelson"""
+    #Decompose lla
+    lat = lla[0]
+    lon = lla[1]
+    alt = lla[2]
+    #Determine the zone number
+    zoneNumber = int((lon+180.)/6) + 1
+    #Special zone for Norway
+    if (56. <= lat < 64.) and (3. <= lon < 12.):
+        zoneNumber = 32
+    #Special zones for Svalbard
+    if 72. <= lat < 84.:
+        if 0. <= lon < 9.: zoneNumber = 31
+        elif 9. <= lon < 21.: zoneNumber = 33
+        elif 21. <= lon < 33.: zoneNumber = 35
+        elif 33. <= lon < 42.: zoneNumber = 37
+    #Format the zone
+    zone = "%d%c" % (zoneNumber, self.utmLetterDesignator(lat))
+    #Determine longitude origin
+    lonOrigin = (zoneNumber - 1) * 6 - 180 + 3
+    #Convert to radians
+    latRad = deg2rad(lat)
+    lonRad = deg2rad(lon)
+    lonOriginRad = deg2rad(lonOrigin)
+    #Conversion constants
+    k0 = 0.9996
+    eSquared = self.wgs84.e**2
+    ePrimeSquared = eSquared/(1.-eSquared)
+    N = self.wgs84.a/sqrt(1.-eSquared*sin(latRad)**2)
+    T = tan(latRad)**2
+    C = ePrimeSquared*cos(latRad)**2
+    A = (lonRad - lonOriginRad)*cos(latRad)
+    M = self.wgs84.a*( \
+        (1. - \
+            eSquared/4. - \
+            3.*eSquared**2/64. - \
+            5.*eSquared**3/256)*latRad - \
+        (3.*eSquared/8. + \
+            3.*eSquared**2/32. + \
+            45.*eSquared**3/1024.)*sin(2.*latRad) + \
+        (15.*eSquared**2/256. + \
+            45.*eSquared**3/1024.)*sin(4.*latRad) - \
+        (35.*eSquared**3/3072.)*sin(6.*latRad))
+    M0 = 0.
+    #Calculate coordinates
+    x = k0*N*( \
+        A+(1-T+C)*A**3/6. + \
+        (5.-18.*T+T**2+72.*C-58.*ePrimeSquared)*A**5/120.) + 500000.
+    y = k0*( \
+        M-M0+N*tan(latRad)*( \
+            A**2/2. + \
+            (5.-T+9.*C+4.*C**2)*A**4/24. + \
+            (61.-58.*T+T**2+600.*C-330.*ePrimeSquared)*A**6/720.))
+    #Calculate scale factor
+    k = k0*(1 + \
+        (1+C)*A**2/2. + \
+        (5.-4.*T+42.*C+13.*C**2-28.*ePrimeSquared)*A**4/24. + \
+        (61.-148.*T+16.*T**2)*A**6/720.)
+    utm = [x, y, alt]
+    info = [zone, k]
+    return utm, info
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ned2ecef">
+    <p>def <span class="ident">ned2ecef</span>(</p><p>self, ned, origin)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts ned local tangent plane coordinates into ecef coordinates
+using origin as the ecef point of tangency.
+Input: ned - (north, east, down) in (m, m, m)
+    origin - (x0, y0, z0) in (m, m, m)
+Output: ecef - (x, y, z) in (m, m, m)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ned2ecef', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ned2ecef" class="source">
+    <pre><code>def ned2ecef(self, ned, origin):
+    """Converts ned local tangent plane coordinates into ecef coordinates
+    using origin as the ecef point of tangency.
+    Input: ned - (north, east, down) in (m, m, m)
+        origin - (x0, y0, z0) in (m, m, m)
+    Output: ecef - (x, y, z) in (m, m, m)
+    """
+    llaOrigin = self.ecef2lla(origin)
+    lat = deg2rad(llaOrigin[0])
+    lon = deg2rad(llaOrigin[1])
+    Rt2e = array([[-sin(lat)*cos(lon), -sin(lon), -cos(lat)*cos(lon)],
+                [-sin(lat)*sin(lon), cos(lon), -cos(lat)*sin(lon)],
+                [cos(lat), 0., -sin(lat)]])
+    return list(dot(Rt2e, array(ned)) + array(origin))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.ned2pae">
+    <p>def <span class="ident">ned2pae</span>(</p><p>self, ned)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Converts the local north, east, down coordinates into range, azimuth,
+and elevation angles
+Input: ned - (north, east, down) in (m, m, m)
+Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.ned2pae', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.ned2pae" class="source">
+    <pre><code>def ned2pae(self, ned):
+    """Converts the local north, east, down coordinates into range, azimuth,
+    and elevation angles
+    Input: ned - (north, east, down) in (m, m, m)
+    Output: pae - (p, alpha, epsilon) in (m, degrees, degrees)
+    """
+    p = euclideanDistance(ned)
+    alpha = atan2(ned[1], ned[0])
+    epsilon = atan2(-ned[2], sqrt(ned[0]**2 + ned[1]**2))
+    return [p, rad2deg(alpha), rad2deg(epsilon)]
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.GPS.utmLetterDesignator">
+    <p>def <span class="ident">utmLetterDesignator</span>(</p><p>self, lat)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the latitude zone of the UTM coordinates</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.GPS.utmLetterDesignator', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.GPS.utmLetterDesignator" class="source">
+    <pre><code>def utmLetterDesignator(self, lat):
+    """Returns the latitude zone of the UTM coordinates"""
+    if -80 <= lat < -72: return 'C'
+    elif -72 <= lat < -64: return 'D'
+    elif -64 <= lat < -56: return 'E'
+    elif -56 <= lat < -48: return 'F'
+    elif -48 <= lat < -40: return 'G'
+    elif -40 <= lat < -32: return 'H'
+    elif -32 <= lat < -24: return 'J'
+    elif -24 <= lat < -16: return 'K'
+    elif -16 <= lat < -8: return 'L'
+    elif -8 <= lat < 0: return 'M'
+    elif 0 <= lat < 8: return 'N'
+    elif 8 <= lat < 16: return 'P'
+    elif 16 <= lat < 24: return 'Q'
+    elif 24 <= lat < 32: return 'R'
+    elif 32 <= lat < 40: return 'S'
+    elif 40 <= lat < 48: return 'T'
+    elif 48 <= lat < 56: return 'U'
+    elif 56 <= lat < 64: return 'V'
+    elif 64 <= lat < 72: return 'W'
+    elif 72 <= lat < 80: return 'X'
+    else: return 'Z'
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="opendis.RangeCoordinates.WGS84" class="name">class <span class="ident">WGS84</span></p>
+      
+  
+    <div class="desc"><p>General parameters defined by the WGS84 system</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.WGS84', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.WGS84" class="source">
+    <pre><code>class WGS84:
+    """General parameters defined by the WGS84 system"""
+    #Semimajor axis length (m)
+    a = 6378137.0
+    #Semiminor axis length (m)
+    b = 6356752.3142
+    #Ellipsoid flatness (unitless)
+    f = (a - b) / a
+    #Eccentricity (unitless)
+    e = sqrt(f * (2 - f))
+    #Speed of light (m/s)
+    c = 299792458.
+    #Relativistic constant
+    F = -4.442807633e-10
+    #Earth's universal gravitational constant
+    mu = 3.986005e14
+    #Earth rotation rate (rad/s)
+    omega_ie = 7.2921151467e-5
+
+    def g0(self, L):
+        """acceleration due to gravity at the elipsoid surface at latitude L"""
+        return 9.7803267715 * (1 + 0.001931851353 * sin(L)**2) / \
+                        sqrt(1 - 0.0066943800229 * sin(L)**2)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#opendis.RangeCoordinates.WGS84">WGS84</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.F" class="name">var <span class="ident">F</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.a" class="name">var <span class="ident">a</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.b" class="name">var <span class="ident">b</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.c" class="name">var <span class="ident">c</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.e" class="name">var <span class="ident">e</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.f" class="name">var <span class="ident">f</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.mu" class="name">var <span class="ident">mu</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="opendis.RangeCoordinates.WGS84.omega_ie" class="name">var <span class="ident">omega_ie</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="opendis.RangeCoordinates.WGS84.g0">
+    <p>def <span class="ident">g0</span>(</p><p>self, L)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>acceleration due to gravity at the elipsoid surface at latitude L</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-opendis.RangeCoordinates.WGS84.g0', this);">Show source &equiv;</a></p>
+  <div id="source-opendis.RangeCoordinates.WGS84.g0" class="source">
+    <pre><code>def g0(self, L):
+    """acceleration due to gravity at the elipsoid surface at latitude L"""
+    return 9.7803267715 * (1 + 0.001931851353 * sin(L)**2) / \
+                    sqrt(1 - 0.0066943800229 * sin(L)**2)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>
