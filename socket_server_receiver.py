@@ -30,10 +30,11 @@ class UDPServer(socketserver.BaseRequestHandler):
         print(f"Received Pdu type {a_pdu.pduType}, {len(self.data)} bytes")
 
         if a_pdu.pduType == 1:
-            self.location = (a_pdu.entityLocation.x, a_pdu.entityLocation.y, a_pdu.entityLocation.z)
-            self.lla = gps.ecef2lla(self.location)
-
-        print(f"PDU location is {self.lla[0]}, {self.lla[1]}, {self.lla[2]}")
+            print(f"PDU data: {a_pdu.entityAppearance}")
+        #     self.location = (a_pdu.entityLocation.x, a_pdu.entityLocation.y, a_pdu.entityLocation.z)
+        #     self.lla = gps.ecef2lla(self.location)
+        #
+        # print(f"PDU location is {self.lla[0]}, {self.lla[1]}, {self.lla[2]}")
 
 
 if __name__ == "__main__":
