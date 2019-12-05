@@ -7,13 +7,13 @@ from opendis.DataOutputStream import DataOutputStream
 from opendis.dis7 import EntityStatePdu
 from opendis.RangeCoordinates import GPS
 
-HOST, PORT = "192.168.1.8", 502
+HOST, PORT = "localhost", 3001
 data_in = " ".join(sys.argv[1:])
 
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
-def send():
+def send_dis():
     pdu = EntityStatePdu()
 
     # Entity ID
@@ -40,4 +40,12 @@ def send():
 
 
 if __name__ == "__main__":
-    send()
+    from pymodbus.client.sync import ModbusTcpClient as ModbusClient
+    from time import sleep
+
+    openplc_ip = input("What is the IP address of the OpenPLC device? ")
+    target = openplc_ip
+    client = ModbusClient(target)
+    client.write_coil(2, True)
+    sleep(2)
+    send_dis()
