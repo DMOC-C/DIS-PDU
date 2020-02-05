@@ -1,19 +1,18 @@
 import socket
 import sys
-
 from io import BytesIO
+
+from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
 from opendis.DataOutputStream import DataOutputStream
 from opendis.dis7 import EntityStatePdu
-from opendis.RangeCoordinates import GPS
 
-HOST, PORT = "localhost", 3001
 data_in = " ".join(sys.argv[1:])
 
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
-def send_dis():
+def send_dis(host, port):
     pdu = EntityStatePdu()
 
     # Entity ID
@@ -35,17 +34,34 @@ def send_dis():
     pdu.serialize(output_stream)
     data = memory_stream.getvalue()
 
-    udp_socket.sendto(data, (HOST, PORT))
-    print(f"Sent {len(data)} bytes")
+    udp_socket.sendto(data, (host, port))
+    print(f"Sent {len(data)} DIS PDU bytes")
+
+
+def send_modbus():
+    openplc_ip = input("What is the IP address of the OpenPLC device? ")
+    if not openplc_ip:
+        openplc_ip = "localhost"
+    openplc_port = input("What is the port of the OpenPLC device? ")
+    if not openplc_port:
+        openplc_port = "5020"
+
+    client = ModbusClient(openplc_ip, openplc_port)
+    client.write_coil(2, True)
+    print(f"Sent Modbus command")
+    client.close()
+
+
+def send_dis_pdu():
+    dis_ip = input("What is the IP address of the DIS PDU receiver? ")
+    if not dis_ip:
+        dis_ip = "localhost"
+    dis_port = input("What is the port of the DIS PDU receiver? ")
+    if not dis_port:
+        dis_port = 3001
+    send_dis(dis_ip, dis_port)
 
 
 if __name__ == "__main__":
-    from pymodbus.client.sync import ModbusTcpClient as ModbusClient
-    from time import sleep
-
-    openplc_ip = input("What is the IP address of the OpenPLC device? ")
-    target = openplc_ip
-    client = ModbusClient(target)
-    client.write_coil(2, True)
-    sleep(2)
-    send_dis()
+    send_dis_pdu()
+    # send_modbus()
