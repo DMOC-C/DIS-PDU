@@ -12,7 +12,7 @@ def send_modbus():
 
     client = ModbusClient(openplc_ip, openplc_port)
     client.write_coil(2, True)
-    print(f"Sent Modbus command")
+    print("Sent Modbus command")
     client.close()
 
 
