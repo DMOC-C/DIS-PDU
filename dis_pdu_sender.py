@@ -2,8 +2,6 @@ import socket
 import sys
 from io import BytesIO
 
-from pymodbus.client.sync import ModbusTcpClient as ModbusClient
-
 from opendis.DataOutputStream import DataOutputStream
 from opendis.dis7 import EntityStatePdu
 
@@ -38,20 +36,6 @@ def send_dis(host, port):
     print(f"Sent {len(data)} DIS PDU bytes")
 
 
-def send_modbus():
-    openplc_ip = input("What is the IP address of the OpenPLC device? ")
-    if not openplc_ip:
-        openplc_ip = "localhost"
-    openplc_port = input("What is the port of the OpenPLC device? ")
-    if not openplc_port:
-        openplc_port = "5020"
-
-    client = ModbusClient(openplc_ip, openplc_port)
-    client.write_coil(2, True)
-    print(f"Sent Modbus command")
-    client.close()
-
-
 def send_dis_pdu():
     dis_ip = input("What is the IP address of the DIS PDU receiver? ")
     if not dis_ip:
@@ -64,4 +48,3 @@ def send_dis_pdu():
 
 if __name__ == "__main__":
     send_dis_pdu()
-    # send_modbus()
