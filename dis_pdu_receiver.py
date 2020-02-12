@@ -35,7 +35,7 @@ def run_dis_server(dis_host="localhost", dis_port=3001):
     """
     with socketserver.UDPServer((dis_host, dis_port), UDPServer) as server:
         print(f"Created UDP socket {dis_port}")
-        server.serve_forever()
+        server.serve_forever()  # Could set it up to timeout
 
 
 if __name__ == "__main__":
